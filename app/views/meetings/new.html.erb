@@ -1,0 +1,7 @@
+<%= form_tag(meetings_path) do %>
+    <%= collection_select(:reservation, :conference_room_id, @conference_rooms, :id, :name) %>
+    <%= text_field_tag('meeting[name]', "", placeholder: "Meeting Name") %>
+    <%= text_field_tag('reservation[starts_at]', "", placeholder: "Meeting Date") %>
+    <%= submit_tag('Add meeting') %>
+<% end %>
+
