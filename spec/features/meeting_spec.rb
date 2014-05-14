@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 feature 'Creating a meeting' do
-  scenario 'User can create a meeting in a conference room' do
+  scenario 'User can create a meeting in a conference room and an email goes out' do
     ConferenceRoom.create!(name: 'Boulder East')
     ConferenceRoom.create!(name: 'Boulder West')
+
+    expect(ActionMailer::Base.deliveries.length).to eq 0
 
     visit new_meeting_path
 
@@ -14,5 +16,6 @@ feature 'Creating a meeting' do
     click_button 'Add meeting'
 
     expect(page).to have_content 'Some IPM'
+    expect(ActionMailer::Base.deliveries.length).to eq 1
   end
 end
