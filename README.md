@@ -20,6 +20,21 @@ that we can answer for them.
 Get all of the specs passing. If you get stuck, check out the `solutions` branch
 to help you along. Bring your questions to class the next day.
 
+## Viewing emails while doing development
+
+While you are doing development, you may want to be able to actually see the
+emails that are getting sent from your app. You can install the
+[MailCatcher gem](http://mailcatcher.me/).
+
+You can also need to add the following to your config/environment/development.rb file:
+
+```
+config.action_mailer.default_url_options = {host: "localhost:3000"}
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+
+```
+
 ## Using ActionMailer on Heroku
 
 1. Install the [SendGrid add-on](https://addons.heroku.com/sendgrid)
